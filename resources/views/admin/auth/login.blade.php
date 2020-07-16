@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <div class="card">
-                    <div class="card-header">用户登录</div>
+                    <div class="card-header">用戶登入</div>
                     <div class="card-body">
 
                         @include('admin.partials.errors')
@@ -14,7 +14,7 @@
                             <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
                             <div class="form-group row">
-                                <label class="col-md-4 col-form-label text-md-right">邮箱</label>
+                                <label class="col-md-4 col-form-label text-md-right">信箱</label>
                                 <div class="col-md-6">
                                     <input type="email" class="form-control" name="email" value="{{ old('email') }}"
                                            autofocus>
@@ -22,7 +22,7 @@
                             </div>
 
                             <div class="form-group row">
-                                <label class="col-md-4 col-form-label text-md-right">密码</label>
+                                <label class="col-md-4 col-form-label text-md-right">密碼</label>
                                 <div class="col-md-6">
                                     <input type="password" class="form-control" name="password">
                                 </div>
@@ -32,7 +32,7 @@
                                 <div class="col-md-6 offset-md-4">
                                     <div class="form-check">
                                         <label>
-                                            <input class="form-check-input" type="checkbox" name="remember"> 记住我
+                                            <input class="form-check-input" type="checkbox" name="remember"> 記住我
                                         </label>
                                     </div>
                                 </div>
@@ -40,7 +40,7 @@
 
                             <div class="form-group row mb-0">
                                 <div class="col-md-8 offset-md-4">
-                                    <button type="submit" class="btn btn-primary">登录</button>
+                                    <button type="submit" class="btn btn-primary">登入</button>
                                 </div>
                             </div>
                         </form>
