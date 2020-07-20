@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Requests\TagCreateRequest;
+use App\Http\Requests\TagUpdateRequest;
 use App\Models\Tag;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
@@ -98,9 +99,17 @@ class TagController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(TagUpdateRequest $request, $id)
     {
-        //
+        $tag = Tag::findOrFail($id);
+
+        foreach (array_keys(array_except($this->fields, ['tag'])) as $field) {
+            $tag->$field = $request->get($field);
+        }
+        $tag->save();
+
+        return redirect("/admin/tag/$id/edit")
+            ->with('success', '修改已保存.');
     }
 
     /**
