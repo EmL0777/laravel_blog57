@@ -120,6 +120,10 @@ class TagController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $tag = Tag::findOrFail($id);
+        $tag->delete();
+
+        return redirect('/admin/tag')
+            ->with('success', '標籤「' . $tag->tag . '」已經費刪除.');
     }
 }
