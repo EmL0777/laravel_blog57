@@ -140,4 +140,64 @@ class UploadsManager
         );
     }
 
+    /**
+     * 創建目錄
+     */
+    public function createDirectory($folder)
+    {
+        $folder = $this->cleanFolder($folder);
+
+        if ($this->disk->exists($folder)) {
+            return "Folder '$folder' already exists.";
+        }
+
+        return $this->disk->makeDirectory($folder);
+    }
+
+    /**
+     * 刪除目錄
+     */
+    public function deleteDirectory($folder)
+    {
+        $folder = $this->cleanFolder($folder);
+
+        $filesFolders = array_merge(
+            $this->disk->directories($folder),
+            $this->disk->files($folder)
+        );
+        if (! empty($filesFolders)) {
+            return "Directory must be empty to delete it.";
+        }
+
+        return $this->disk->deleteDirectory($folder);
+    }
+
+    /**
+     * 刪除檔案
+     */
+    public function deleteFile($path)
+    {
+        $path = $this->cleanFolder($path);
+
+        if (! $this->disk->exists($path)) {
+            return "File does not exist.";
+        }
+
+        return $this->disk->delete($path);
+    }
+
+    /**
+     * 儲存檔案
+     */
+    public function saveFile($path, $content)
+    {
+        $path = $this->cleanFolder($path);
+
+        if ($this->disk->exists($path)) {
+            return "File already exists.";
+        }
+
+        return $this->disk->put($path, $content);
+    }
+
 }
